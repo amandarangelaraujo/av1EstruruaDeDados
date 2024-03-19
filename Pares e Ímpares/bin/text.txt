@@ -1,0 +1,196 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int[] vect = new int[N];
+        //COMPUTANDO OS VALORES
+        for(int i = 0; i<N; i++){
+            int a = sc.nextInt();
+            vect[i] = a;
+        }
+        //onde começar a ficar impar
+        int ultimoIndicePar = 0;
+        for(int i=0;i<vect.length;i++){
+            if(vect[i]%2==1){
+                ultimoIndicePar=i-1;
+                break;
+            }
+        }
+
+        //antes de ordenar
+        System.out.println("antes de ordenar");
+        for(int i =0; i<vect.length; i++){
+            System.out.println(vect[i]);
+        }
+        
+        System.out.println("ultimo índice par");
+        System.out.println(ultimoIndicePar);
+        
+
+        //depois de ordenar
+        System.out.println("depois de ordenar");
+        ordenaVetor(vect, ultimoIndicePar);
+        for(int i =0; i<vect.length; i++){
+            System.out.println(vect[i]);
+        }
+    }
+ 
+
+    public static void ordenaVetor(int[] vect, int ultimoIndicePar){
+        //pega a primeira parte (pares) do vetor e ordena em ordem crescente
+        for(int i = 0; i<ultimoIndicePar; i++){
+            for(int j = 1; j<=ultimoIndicePar;j++){
+                if(vect[i]>vect[j]){
+                    int aux = vect[i];
+                    vect[i] = vect[j];
+                    vect[j] = aux;
+                }
+            }            
+        }
+
+        for(int i = ultimoIndicePar+1; i<vect.length; i++){
+            for(int j = ultimoIndicePar+1; j<vect.length; j++){
+                if(vect[i]<vect[j]){
+                    int aux = vect[i];
+                    vect[i] = vect[j];
+                    vect[j] = aux;
+                }
+            }            
+        }
+
+
+   
+    }
+
+}
+
+
+
+SEGUNDA SOLUÇÃO
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int[] vectPares = new int[N];
+        int[] vectImpares = new int[N];
+        int indicePares = 0;
+        int indiceImpares = 0;
+        //COMPUTANDO OS VALORES
+        for(int i = 0; i<N; i++){
+            int a = sc.nextInt();
+            if(a%2==0){
+                vectPares[indicePares] = a;
+                indicePares++;
+            }
+            else{
+                vectImpares[indiceImpares] = a;
+                indiceImpares++;
+            }
+        }
+        
+        ordenaVetorPar(vectPares);
+        ordenaVetorImpar(vectImpares);
+        int inicio = vectPares.length-indicePares;
+        for(int i =inicio; i<vectPares.length; i++){
+            System.out.println(vectPares[i]);
+        }
+        for(int i =0; i<indiceImpares; i++){
+            System.out.println(vectImpares[i]);
+        }
+
+        
+       
+        
+    }
+
+
+    public static void ordenaVetorPar(int[] vect){
+        for(int i = 0; i<(vect.length)-1; i++){
+            for(int j = i+1; j<(vect.length); j++){
+                if(vect[i]>vect[j]){
+                    int aux = vect[i];
+                    vect[i] = vect[j];
+                    vect[j] = aux;
+                }
+            }            
+        }
+    }
+
+    public static void ordenaVetorImpar(int[] vect){
+        for(int i = 0; i<vect.length; i++){
+            for(int j = i+1; j<vect.length; j++){
+                if(vect[i]<vect[j]){
+                    int aux = vect[i];
+                    vect[i] = vect[j];
+                    vect[j] = aux;
+                }
+            }            
+        }
+    }
+
+
+}
+
+
+SEM USAR FUNÇÕES
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int[] vectPares = new int[N];
+        int[] vectImpares = new int[N];
+        int indicePares = 0;
+        int indiceImpares = 0;
+        //COMPUTANDO OS VALORES
+        for(int i = 0; i<N; i++){
+            int a = sc.nextInt();
+            if(a%2==0){
+                vectPares[indicePares] = a;
+                indicePares++;
+            }
+            else{
+                vectImpares[indiceImpares] = a;
+                indiceImpares++;
+            }
+        }
+        
+        for(int i = 0; i<(vectPares.length)-1; i++){
+            for(int j = i+1; j<(vectPares.length); j++){
+                if(vectPares[i]>vectPares[j]){
+                    int aux = vectPares[i];
+                    vectPares[i] = vectPares[j];
+                    vectPares[j] = aux;
+                }
+            }            
+        }
+
+        for(int i = 0; i<vectImpares.length ; i++){
+            for(int j = i+1; j<vectImpares.length; j++){
+                if(vectImpares[i]<vectImpares[j]){
+                    int aux = vectImpares[i];
+                    vectImpares[i] = vectImpares[j];
+                    vectImpares[j] = aux;
+                }
+            }            
+        }
+        
+        int inicio = vectPares.length-indicePares;
+        for(int i =inicio; i<vectPares.length; i++){
+            System.out.println(vectPares[i]);
+        }
+        for(int i =0; i<indiceImpares; i++){
+            System.out.println(vectImpares[i]);
+        }
+
+        
+       
+        
+    }
+    
+
+}

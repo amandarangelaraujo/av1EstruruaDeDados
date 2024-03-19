@@ -1,0 +1,13 @@
+for(int x =0; x<listaNomes.size(); x++){
+            while(listaNomes.size()!=0){
+                if(listaNomes.get(interador).length() == y){
+                    System.out.println(listaNomes.get(interador));
+                    y = listaNomes.get(interador).length()+1;
+                    listAux.add(listaNomes.get(interador));
+                    listaNomes.remove(interador);
+                    interador++;
+                }
+                y++;
+            }
+        }
+        
